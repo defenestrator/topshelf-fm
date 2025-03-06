@@ -57,3 +57,6 @@ Route::middleware('guest')->group(function () {
 
 Route::post('logout', App\Livewire\Actions\Logout::class)
     ->name('logout');
+
+Route::get('logout', App\Livewire\Actions\Logout::class)
+->name('getLogout');
