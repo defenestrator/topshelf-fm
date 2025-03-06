@@ -2,8 +2,8 @@
 
 use App\Models\Question;
 use Flux\Flux;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -65,9 +65,9 @@ new class extends Component {
 }; ?>
 
 <div>
-    <flux:card class="m-2 rounded-lg max-w-120 bg-zinc-400/5 dark:bg-zinc-900">
+    <div class="card m-2 rounded-lg max-w-120 bg-zinc-400/5 dark:bg-zinc-900">
         <div class="pl-2">
-            <flux:text variant="strong">{{ $question->question }}</flux:text>
+            <p class="bold text-lg my-2 py-2">{{ $question->question }}</p>
             <div class="min-h-2"></div>
 
             <div class="flex jusify-between items-center">
@@ -95,24 +95,18 @@ new class extends Component {
                             </flux:button>
                         </div>
 
-                        @if ($canEdit)
-                            <flux:button wire:click="deleteQuestion()" variant="danger" size="sm" inset="left"
-                                class="ml-1 flex items-center gap-2 cursor-pointer" :loading="false">
-                                <flux:icon.x-mark name="xmark" variant="outline"
-                                    class="size-4 text-white [&_path]:stroke-[2.25]" />
-                            </flux:button>
-                        @endif
+
                     </div>
                 </div>
 
-                <div class="flex items-center pt-2 gap-2">
-                    <flux:avatar src="{{ $question->user->twitch_avatar_url }}" size="xs" class="shrink-0" />
-                    <flux:subheading variant="strong">
+                <div class="flex items-center pt-2 gap-2 p-3">
+                    <img src="{{ $question->user->twitch_avatar_url }}" size="xs" class="w-10 rounded-full" />
+                    <div class="flex-row" variant="strong">
                         {{ $question->user->name }}
-                    </flux:subheading>
+                </div>
                 </div>
 
             </div>
         </div>
-    </flux:card>
+    </div>
 </div>
